@@ -1,46 +1,75 @@
-# DSA_210
-DSA 210 project
+# DSA 210 Term Project  
+## Predicting Football Match Outcomes Using Betting Odds and Elo Ratings  
 
+This project explores the extent to which football match outcomes can be predicted using pre-match betting odds and Elo ratings. Through a combination of statistical analysis and machine learning, the study aims to evaluate the efficiency of betting markets and quantify the added value of team performance metrics.
 
-# Analyzing the Predictive Power of Betting Odds on Football Match Outcomes
+---
 
-## Overview
-This project investigates the relationship between pre-match betting odds and the final outcomes of football matches. The primary goal is to evaluate the accuracy of betting markets in predicting match results and to identify key factors that influence these predictions.
+##  Project Objectives
 
-## Motivation
-Sports betting markets are renowned for their predictive capabilities, yet their accuracy remains a subject of debate. By comparing pre-match odds with actual match scores, this project aims to:
-- Assess the efficiency of betting markets in forecasting game outcomes.
-- Understand which factors—such as home advantage and team performance metrics—affect prediction accuracy.
-- Provide insights that may benefit sports analysts, bettors, and data science enthusiasts.
+- Assess the predictive power of implied probabilities derived from betting odds.
+- Integrate Elo ratings to capture relative team strength.
+- Develop and evaluate a classification model to forecast match results.
 
-## Data Sources
-- **Match Scores:** Official match results obtained from reliable football data APIs or league websites.
-- **Betting Odds:** Pre-match betting odds collected from sports betting websites or relevant datasets.
+---
 
-## Methodology
-1. **Data Collection & Cleaning:**  
-   - Gather football match scores and corresponding pre-match betting odds.
-   - Clean and preprocess the data to ensure consistency by handling missing values and normalizing odds formats.
+## Dataset Description
 
-2. **Exploratory Data Analysis (EDA):**  
-   - Visualize the distribution of odds and match outcomes.
-   - Identify trends and patterns in the data through descriptive statistics and visualization techniques.
+The dataset includes:
+- Match results (`FTR`: Home win, Draw, Away win)
+- Implied probabilities (`ProbH`, `ProbD`, `ProbA`)
+- Team Elo ratings (`HomeElo`, `AwayElo`)
+- Derived feature: `EloDiff = HomeElo - AwayElo`
 
-3. **Statistical Analysis & Machine Learning:**  
-   - Perform correlation analysis and statistical tests to examine the relationship between betting odds and match results.
-   - Develop regression or classification models to predict match outcomes based on the betting odds.
-   - Evaluate model performance using appropriate metrics (e.g., accuracy and mean squared error).
+Data was collected and cleaned to ensure consistency, with conversions applied to standardize formats and remove anomalies.
 
-4. **Visualization:**  
-   - Create data visualizations (charts and graphs) to clearly present insights.
-   - Compare predicted outcomes with actual match results through plots and summary statistics.
+---
 
-## Tools and Technologies
-- **Programming Language:** Python
-- **Libraries:**  
-  - Data manipulation: `pandas`, `numpy`  
-  - Machine Learning: `scikit-learn`  
-  - Visualization: `matplotlib`
+##  Methodology
+
+### 1. Data Preprocessing
+- Conversion of raw betting odds to implied probabilities.
+- Cleaning missing or inconsistent records.
+- Generation of Elo-based features to reflect competitive dynamics.
+
+### 2. Exploratory Data Analysis (EDA)
+- Distribution of match outcomes and betting probabilities.
+- Relationship between Elo differences and outcome likelihood.
+- Statistical testing to evaluate market efficiency (binomial hypothesis test).
+
+### 3. Model Development
+- **Model used:** Random Forest Classifier
+- **Input features:** ProbH, ProbD, ProbA, EloDiff, HomeElo, AwayElo
+- **Output:** FTR (match result classification)
+- Performance metrics include accuracy, precision, recall, and confusion matrix analysis.
+
+### 4. Feature Importance
+- Analysis of which features most influenced model predictions.
+- Visualization of importance scores to interpret model decisions.
+
+---
+
+##  Results Summary
+
+- Model achieved an **accuracy of ~44%** on the test set.
+- Feature importance showed **ProbH**, `EloDiff`, and `ProbA` were key predictors.
+- Betting odds alone provided a strong signal, and Elo ratings contributed to measurable improvement in classification performance.
+
+---
+
+## Technologies Used
+
+- **Language:** Python
+- **Libraries:** pandas, numpy, scikit-learn, matplotlib, seaborn
+- **Platform:** Jupyter Notebook, GitHub
+
+---
+
+##  How to Run
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
 
 
 ## Usage
